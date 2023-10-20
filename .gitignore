@@ -1,1 +1,8 @@
+
+# cargo
 **/target
+**/.cargo
+**/.vscode
+
+# ide
+.vscode
