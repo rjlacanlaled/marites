@@ -1,18 +1,26 @@
 use std::net::SocketAddr;
 
 pub use self::error::{Error, Result};
-use crate::routers::routes_static;
+use crate::routers::v1::auth::routes_test_auth;
 use crate::routers::v1::test::routes_test;
+use crate::{middlewares::auth_middleware::with_auth, routers::routes_static};
 
-use axum::Router;
+use axum::{middleware, Router};
+use tower_cookies::CookieManagerLayer;
 
 mod error;
+mod middlewares;
 mod routers;
 
 #[tokio::main]
 async fn main() -> Result<()> {
+    let routes_protected = routes_test().route_layer(middleware::from_fn(with_auth));
+    let routes_public = routes_test_auth();
+
     let routes_all = Router::new()
-        .merge(routes_test())
+        .nest("/api/v1", routes_protected)
+        .nest("/api/v1", routes_public)
+        .layer(CookieManagerLayer::new())
         .fallback_service(routes_static());
 
     let addr = SocketAddr::from(([0, 0, 0, 0], 8080));
