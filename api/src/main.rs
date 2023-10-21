@@ -28,6 +28,9 @@ async fn main() -> Result<()> {
         .with_env_filter(EnvFilter::from_default_env())
         .init();
 
+    // For dev only
+    _dev_utils::init_dev().await;
+
     let routes_protected = routes_test().route_layer(middleware::from_fn(with_auth));
     let routes_public = routes_test_auth();
 

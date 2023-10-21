@@ -17,5 +17,14 @@ cargo watch -q -c -w src/ -w .cargo/ -x "run"
 cargo watch -q -c -w examples/ -x "run --example quick_dev"
 ```
 
+## Starting the DB
+```sh
+# Start postgesql server docker image:
+docker run --rm --name pg -p 5432:5432 -e POSTGRES_PASSWORD=welcome postgres:15
+
+# (optional) Run a psql terminal on pg. Open a new terminal tab:
+docker exec -it -u postgres pg psql
+```
+
 ## Status
 It's currently just an idea and there's not much development progress. You're welcome to contribute. You can send me an email at rjlacanlaled@gmail.com if you're interested.
