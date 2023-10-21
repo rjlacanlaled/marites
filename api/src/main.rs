@@ -2,6 +2,7 @@ mod config;
 mod error;
 mod middlewares;
 mod routes;
+mod model;
 
 pub mod _dev_utils;
 
