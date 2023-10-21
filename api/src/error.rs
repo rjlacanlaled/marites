@@ -3,13 +3,13 @@ use axum::{
     response::{IntoResponse, Response},
 };
 
-pub mod auth;
+use crate::routes::v1::auth::error::AuthError;
 
 pub type Result<T> = core::result::Result<T, Error>;
 
 #[derive(Debug)]
 pub enum Error {
-    AuthError(auth::AuthError),
+    AuthError(AuthError),
     InternalServerError,
 }
 

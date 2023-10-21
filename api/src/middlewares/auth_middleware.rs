@@ -1,7 +1,6 @@
 use crate::{
-    error::{auth::AuthError, Result},
-    routers::AUTH_TOKEN,
-    Error,
+    error::{Error, Result},
+    routes::{v1::auth::error::AuthError, AUTH_TOKEN},
 };
 use axum::{http::Request, middleware::Next, response::Response};
 use tower_cookies::Cookies;

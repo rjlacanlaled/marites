@@ -4,6 +4,8 @@ use axum::{
     Router,
 };
 
+pub mod error;
+
 pub fn routes_test_auth() -> Router {
     Router::new().route("/auth/test", get(test_auth_handler))
 }

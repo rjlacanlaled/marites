@@ -1,16 +1,16 @@
 use std::net::SocketAddr;
 
 pub use self::error::{Error, Result};
-use crate::routers::v1::auth::routes_test_auth;
-use crate::routers::v1::test::routes_test;
-use crate::{middlewares::auth_middleware::with_auth, routers::routes_static};
+use crate::routes::v1::auth::routes_test_auth;
+use crate::routes::v1::test::routes_test;
+use crate::{middlewares::auth_middleware::with_auth, routes::routes_static};
 
 use axum::{middleware, Router};
 use tower_cookies::CookieManagerLayer;
 
 mod error;
 mod middlewares;
-mod routers;
+mod routes;
 
 #[tokio::main]
 async fn main() -> Result<()> {
