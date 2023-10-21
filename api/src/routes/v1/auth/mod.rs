@@ -1,8 +1,5 @@
-use axum::{
-    response::{Html, IntoResponse},
-    routing::get,
-    Router,
-};
+use axum::{ response::{ Html, IntoResponse }, routing::get, Router };
+use tracing::debug;
 
 pub mod error;
 
@@ -11,9 +8,7 @@ pub fn routes_test_auth() -> Router {
 }
 
 async fn test_auth_handler() -> impl IntoResponse {
-    print!("->> AUTH TEST HANDLER");
+    debug!("test_auth_handler");
 
-    Html(format!(
-        "<strong>Hello, World!</strong><br><button>Go to Site</button>"
-    ))
+    Html(format!("<strong>Hello, World!</strong><br><button>Go to Site</button>"))
 }

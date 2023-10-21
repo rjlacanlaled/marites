@@ -1,4 +1,4 @@
-use axum::{routing::get_service, Router};
+use axum::{ routing::get_service, Router };
 use tower_http::services::ServeDir;
 
 // modules

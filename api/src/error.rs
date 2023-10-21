@@ -1,7 +1,5 @@
-use axum::{
-    http::StatusCode,
-    response::{IntoResponse, Response},
-};
+use axum::{ http::StatusCode, response::{ IntoResponse, Response } };
+use tracing::debug;
 
 use crate::routes::v1::auth::error::AuthError;
 
@@ -15,7 +13,7 @@ pub enum Error {
 
 impl IntoResponse for Error {
     fn into_response(self) -> Response {
-        print!("->> {:<12} - {self:?}", "INTO_RES");
+        debug!("{} - {}", "ERROR", "into_response");
 
         match self {
             Error::AuthError(e) => e.into_response(),

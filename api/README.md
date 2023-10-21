@@ -11,7 +11,7 @@
 ## Quick Start
 ```sh
 # Terminal 1 - To run server.
-cargo watch -q -c -w src/ -x "run"
+cargo watch -q -c -w src/ -w .cargo/ -x "run"
 
 # Terminal 2 - To run examples
 cargo watch -q -c -w examples/ -x "run --example quick_dev"

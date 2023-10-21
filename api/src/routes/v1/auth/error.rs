@@ -1,7 +1,5 @@
-use axum::{
-    http::StatusCode,
-    response::{IntoResponse, Response},
-};
+use axum::{ http::StatusCode, response::{ IntoResponse, Response } };
+use tracing::debug;
 
 #[derive(Debug)]
 pub enum AuthError {
@@ -10,7 +8,7 @@ pub enum AuthError {
 
 impl IntoResponse for AuthError {
     fn into_response(self) -> Response {
-        print!("->> {:<12} - {self:?}", "INTO_RES");
+        debug!("{} - {}", "AUTH_ERROR", "into_response");
 
         match self {
             AuthError::InvalidToken => {

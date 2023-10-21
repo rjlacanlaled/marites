@@ -1,12 +1,13 @@
 use std::net::SocketAddr;
 
-pub use self::error::{Error, Result};
+pub use self::error::{ Error, Result };
 use crate::routes::v1::auth::routes_test_auth;
 use crate::routes::v1::test::routes_test;
-use crate::{middlewares::auth_middleware::with_auth, routes::routes_static};
+use crate::{ middlewares::auth_middleware::with_auth, routes::routes_static };
 
-use axum::{middleware, Router};
+use axum::{ middleware, Router };
 use tower_cookies::CookieManagerLayer;
+use tracing::info;
 use tracing_subscriber::EnvFilter;
 
 mod error;
@@ -15,7 +16,8 @@ mod routes;
 
 #[tokio::main]
 async fn main() -> Result<()> {
-    tracing_subscriber::fmt()
+    tracing_subscriber
+        ::fmt()
         .without_time() // For testing only
         .with_target(false)
         .with_env_filter(EnvFilter::from_default_env())
@@ -31,11 +33,8 @@ async fn main() -> Result<()> {
         .fallback_service(routes_static());
 
     let addr = SocketAddr::from(([0, 0, 0, 0], 8080));
-    println!("Listening on {}", addr);
-    axum::Server::bind(&addr)
-        .serve(routes_all.into_make_service())
-        .await
-        .unwrap();
+    info!("Listening on {}", addr);
+    axum::Server::bind(&addr).serve(routes_all.into_make_service()).await.unwrap();
 
     Ok(())
 }
