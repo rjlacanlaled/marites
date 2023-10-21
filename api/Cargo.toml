@@ -24,6 +24,14 @@ tower-cookies = "0.9"
 tracing = "0"
 tracing-subscriber = { version = "0", features = ["env-filter"] }
 
+# -- Data
+sqlx = { version = "0.7.2", features = [
+    "runtime-tokio-rustls",
+    "postgres",
+    "uuid",
+    "time",
+] }
+
 # -- Others
 uuid = { version = "1", features = ["v4", "fast-rng"] }
 lazy-regex = "3"

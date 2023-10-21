@@ -1,12 +1,17 @@
+mod config;
 mod error;
 mod middlewares;
 mod routes;
 
-pub use self::error::{ Error, Result };
+pub mod _dev_utils;
 
+pub use self::error::{ Error, Result };
+pub use config::config;
+
+use crate::routes::serve_dir;
 use crate::routes::v1::auth::routes_test_auth;
 use crate::routes::v1::test::routes_test;
-use crate::{ middlewares::auth_middleware::with_auth, routes::routes_static };
+use crate::middlewares::auth_middleware::with_auth;
 
 use std::net::SocketAddr;
 use axum::{ middleware, Router };
@@ -30,7 +35,7 @@ async fn main() -> Result<()> {
         .nest("/api/v1", routes_protected)
         .nest("/api/v1", routes_public)
         .layer(CookieManagerLayer::new())
-        .fallback_service(routes_static());
+        .fallback_service(serve_dir());
 
     let addr = SocketAddr::from(([0, 0, 0, 0], 8080));
     info!("Listening on {}", addr);
