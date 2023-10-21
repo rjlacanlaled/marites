@@ -11,7 +11,7 @@ pub fn routes_test_auth() -> Router {
 }
 
 async fn test_auth_handler() -> impl IntoResponse {
-    print!("->> {:<12} - {}", "TEST", "test_handler");
+    print!("->> AUTH TEST HANDLER");
 
     Html(format!(
         "<strong>Hello, World!</strong><br><button>Go to Site</button>"

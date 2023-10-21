@@ -9,7 +9,7 @@ pub fn routes_test() -> Router {
 }
 
 async fn test_handler() -> impl IntoResponse {
-    print!("->> {:<12} - {}", "TEST", "test_handler");
+    print!("->> TEST_HANDLER");
 
     Html(format!(
         "<strong>Hello, World!</strong><br><button>Go to Site</button>"

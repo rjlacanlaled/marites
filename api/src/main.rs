@@ -7,6 +7,7 @@ use crate::{middlewares::auth_middleware::with_auth, routes::routes_static};
 
 use axum::{middleware, Router};
 use tower_cookies::CookieManagerLayer;
+use tracing_subscriber::EnvFilter;
 
 mod error;
 mod middlewares;
@@ -14,6 +15,12 @@ mod routes;
 
 #[tokio::main]
 async fn main() -> Result<()> {
+    tracing_subscriber::fmt()
+        .without_time() // For testing only
+        .with_target(false)
+        .with_env_filter(EnvFilter::from_default_env())
+        .init();
+
     let routes_protected = routes_test().route_layer(middleware::from_fn(with_auth));
     let routes_public = routes_test_auth();
 
