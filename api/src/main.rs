@@ -3,6 +3,7 @@ mod error;
 mod middlewares;
 mod routes;
 mod model;
+mod context;
 
 pub mod _dev_utils;
 

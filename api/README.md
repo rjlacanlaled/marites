@@ -8,7 +8,7 @@
     <hr/>
 </div>
 
-## Quick Start
+## Quick Start (watch)
 ```sh
 # Terminal 1 - To run server.
 cargo watch -q -c -w src/ -w .cargo/ -x "run"
@@ -24,6 +24,14 @@ docker run --rm --name pg -p 5432:5432 -e POSTGRES_PASSWORD=welcome postgres:15
 
 # (optional) Run a psql terminal on pg. Open a new terminal tab:
 docker exec -it -u postgres pg psql
+```
+
+## Unit Test (watch)
+```sh
+cargo watch -q -c -x "test -- --nocapture"
+
+# Filter tests
+cargo watch -q -c -x "test::model::task::tests::test_create_ok()"
 ```
 
 ## Status
