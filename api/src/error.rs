@@ -1,7 +1,7 @@
+use crate::routes::v1::auth::error::AuthError;
+
 use axum::{ http::StatusCode, response::{ IntoResponse, Response } };
 use tracing::debug;
-
-use crate::routes::v1::auth::error::AuthError;
 
 pub type Result<T> = core::result::Result<T, Error>;
 
