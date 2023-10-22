@@ -6,3 +6,7 @@
 
 # ide
 .vscode
+
+# Added by cargo
+
+/target

@@ -18,11 +18,11 @@ use crate::middlewares::auth_middleware::with_auth;
 use std::net::SocketAddr;
 use axum::{ middleware, Router };
 use tower_cookies::CookieManagerLayer;
-use tracing::info;
+use tracing::{ info, debug };
 use tracing_subscriber::EnvFilter;
 
 #[tokio::main]
-async fn main() -> Result<()> {
+async fn start() -> Result<()> {
     tracing_subscriber
         ::fmt()
         .without_time() // For testing only
@@ -47,4 +47,12 @@ async fn main() -> Result<()> {
     axum::Server::bind(&addr).serve(routes_all.into_make_service()).await.unwrap();
 
     Ok(())
+}
+
+pub fn main() {
+    let result = start();
+
+    if let Some(err) = result.err() {
+        debug!("Error: {:?}", err);
+    }
 }

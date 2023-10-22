@@ -7,6 +7,10 @@ repository = "https://github.com/rjlacanlaled/marites"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[lib]
+name = "api"
+path = "src/lib.rs"
+
 [dependencies]
 tokio = { version = "1", features = ["full"] }
 
@@ -42,9 +46,8 @@ uuid = { version = "1", features = ["v4", "fast-rng"] }
 lazy-regex = "3"
 async-trait = "0"
 strum_macros = "0"
-anyhow = "1"
-dotenvy = "0.15.7"
 
 [dev-dependencies]
+anyhow = "1"
 httpc-test = "0.1.7"
 serial_test = "2"

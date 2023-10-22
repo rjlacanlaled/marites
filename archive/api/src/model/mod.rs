@@ -1,6 +1,8 @@
 mod error;
 mod store;
-mod task;
+mod base;
+
+pub mod task;
 
 pub use self::error::{ Error, Result };
 use self::store::{ Db, new_db_pool };
